@@ -35,27 +35,20 @@ radio.onReceivedNumber(function (receivedNumber) {
             . # # # .
             . . # . .
             `)
-    } else {
+    } else if (receivedNumber == 5) {
         SuperBit.MotorStopAll()
         basic.showLeds(`
-            # . . . #
+            # . . # #
             . # . # .
             . . # . .
             . # . # .
             # . . . #
             `)
+    } else {
+        SuperBit.MotorStopAll()
     }
 })
-input.onButtonPressed(Button.A, function () {
-    radio.sendNumber(1)
-})
-input.onButtonPressed(Button.AB, function () {
-    radio.sendNumber(3)
-})
-input.onButtonPressed(Button.B, function () {
-    radio.sendNumber(2)
-})
-input.onGesture(Gesture.Shake, function () {
-    radio.sendNumber(4)
+radio.onReceivedString(function (receivedString) {
+    basic.showString(receivedString)
 })
 radio.setGroup(10)
